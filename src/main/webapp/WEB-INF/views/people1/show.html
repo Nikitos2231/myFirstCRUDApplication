@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Show person</title>
+
+    <style>
+        .container {
+            margin: 0 auto;
+            max-width: 1920px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <p th:object="${person}" th:text="${'Name: ' + person.getFull_name()}"></p>
+    <p th:object="${person}" th:text="${'Birthday: ' + person.getYear()}"></p>
+
+    <div th:if="${books.isEmpty()}">
+        <hr>
+        <p>The person haven't taken books</p>
+        <hr/>
+    </div>
+
+    <div th:if="${!books.isEmpty()}">
+        <hr/>
+        <b>Books:</b>
+        <br/>
+        <table th:each="book : ${books}">
+            <tr th:text="${book.getName() + ', ' + book.getAuthor() + ', ' + book.getYear()}">book</tr>
+        </table>
+        <hr/>
+    </div>
+    <form th:method="DELETE" th:action="@{/people1/{person1_id}(person1_id=${person.getPerson1_id()})}">
+        <input type="submit" value="Delete">
+    </form>
+    <br/>
+    <a th:href="@{/people1/{person1_id}/edit(person1_id=${person.getPerson1_id()})}">Edit person</a>
+</div>
+</body>
+</html>

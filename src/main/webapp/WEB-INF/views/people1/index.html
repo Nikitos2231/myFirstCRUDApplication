@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All people</title>
+
+    <style>
+        .container {
+            margin: 0 auto;
+            max-width: 1920px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>All people</h1>
+    <div th:each="person1 : ${people1}">
+        <a th:href="@{/people1/{id}(id=${person1.getPerson1_id()})}" th:text="${person1.getFull_name() + ', ' + person1.getYear()}">user</a>
+    </div>
+    <hr/>
+    <a href="/people1/new">Create a new person</a>
+    <hr/>
+    <a href="/books">Go to books</a>
+</div>
+
+</body>
+</html>
